@@ -28,6 +28,16 @@ body {
 .error {
   border: 1px solid red !important;
 }
+.errormessage {
+    background: #ff00006b;
+    color: #fff;
+    border-radius: 5px;
+    padding: 6px;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: normal;
+}
 /* sign up page  start*/
 .signup {
   padding: 20px;

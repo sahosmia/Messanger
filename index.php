@@ -4,7 +4,7 @@ include_once('include/header.php');
 <section class="signup">
    <div class="header title">Sign Up</div>
    <div class="main_form">
-      <form id="form" enctype="multipart/form-data" method="post" action="include/signup.php">
+      <form id="form" enctype="multipart/form-data" method="post">
 
          <div class="item">
             <label>User Name</label>
@@ -19,13 +19,13 @@ include_once('include/header.php');
 
          <div class="item">
             <label>Password</label>
-            <input id="password" type="password1" name="password" placeholder="Password">
+            <input id="password" type="password" name="password" placeholder="Password">
             <small></small>
          </div>
 
          <div class="item">
             <label>Confirmation Password</label>
-            <input id="cpassword" type="password1" name="cpassword" placeholder="Confirmation Password">
+            <input id="cpassword" type="password" name="cpassword" placeholder="Confirmation Password">
             <small></small>
          </div>
 
@@ -41,6 +41,11 @@ include_once('include/header.php');
    <div class="text">
       <p>Have a acount? <a href="signin.php">Sign In</a> Now</p>
    </div>
-   <?php
-   include_once('include/footer.php');
-   ?>
+ </section>
+ </div><!-- box div end -->
+
+ <!-- main js  -->
+ <script src="js/app.js"></script>
+ </body>
+
+ </html>

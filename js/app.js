@@ -19,12 +19,12 @@ form.addEventListener("submit", function (e) {
 
   // errorCheck for check has any error   true == nai, false == ase
   var errorCheck;
-  errorCheck = true;
+  errorCheck = false;
   // /*
   // username
   if (usernameValue === "") {
     errorAction(username, "please give your name");
-    errorCheck = false; // if has any error errorCheck convert true to false  (false == ase)
+    errorCheck = true; // if has any error errorCheck convert true to false  (false == ase)
   } else {
     successAction(username);
   }
@@ -36,10 +36,10 @@ form.addEventListener("submit", function (e) {
 
   if (emailValue === "") {
     errorAction(email, "please give your email");
-    errorCheck = false; // if has any error errorCheck convert true to false  (false == ase)
+    errorCheck = true; // if has any error errorCheck convert true to false  (false == ase)
   } else if (!validRegex.test(emailValue)) {
     errorAction(email, "please give a valid email");
-    errorCheck = false;
+    errorCheck = true;
   } else {
     // check already exists
     let xhr = new XMLHttpRequest();
@@ -52,7 +52,7 @@ form.addEventListener("submit", function (e) {
             successAction(email);
           } else {
             errorAction(email, data);
-            errorCheck = false;
+            errorCheck = true;
           }
         }
       }
@@ -68,14 +68,14 @@ form.addEventListener("submit", function (e) {
   if (passwordValue === "") {
     //empty
     errorAction(password, "please give your password");
-    errorCheck = false;
+    errorCheck = true;
   } else if (!regularExpression.test(passwordValue)) {
     //regx
     errorAction(
       password,
       "please give at lest a number, a specail carecter, a lowercase, a uppercase, minimum 4 dizit and maximum 12 dizit"
     );
-    errorCheck = false;
+    errorCheck = true;
   } else {
     successAction(password);
   }
@@ -83,23 +83,21 @@ form.addEventListener("submit", function (e) {
   // confirmation password
   if (cpasswordValue === "") {
     errorAction(cpassword, "please give your cpassword");
-    errorCheck = false;
+    errorCheck = true;
   } else if (cpasswordValue !== passwordValue) {
     errorAction(
       cpassword,
       "dont match your confirmation password with password"
     );
-    errorCheck = false;
+    errorCheck = true;
   } else {
     successAction(cpassword);
   }
 
-  // */
-
   // image
   if (imgValue === "") {
     errorAction(img, "please give your image");
-    errorCheck = false;
+    errorCheck = true;
   } else {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "include/imgvalidation.php", true);
@@ -111,7 +109,7 @@ form.addEventListener("submit", function (e) {
             successAction(img);
           } else {
             errorAction(img, data);
-            errorCheck = false;
+            errorCheck = true;
           }
         }
       }
@@ -121,15 +119,40 @@ form.addEventListener("submit", function (e) {
   }
 
   // check has any error     redirect insert.php page
-  if (errorCheck == true) {
+  if (errorCheck === false) {
+    // check already exists
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "include/signup.php", true);
+    xhr.open("POST", "include/reg_email.php", true);
     xhr.onload = () => {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           let data = xhr.response;
           if (data === "success") {
-            location.href="front.php";
+            successAction(email);
+
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "include/signup.php", true);
+            xhr.onload = () => {
+              if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                  let data = xhr.response;
+                  if (data === "success") {
+                    location.href="front.php";
+                    // console.log(errorCheck);
+                  }
+                }
+              }
+            }
+            let formData = new FormData(formTag);
+            xhr.send(formData);
+
+
+
+
+          } else {
+            errorAction(email, data);
+            errorCheck = true;
           }
         }
       }
@@ -137,8 +160,21 @@ form.addEventListener("submit", function (e) {
     let formData = new FormData(formTag);
     xhr.send(formData);
 
-    // console.log('sahos');
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
+
 });
 
 function errorAction(input, message) {
@@ -162,3 +198,109 @@ function successAction(input) {
   input.className = "success"; //success border at input
   small.innerText = ""; // success message is null
 }
+
+
+
+
+
+
+
+
+
+
+
+// sign in code
+
+
+
+// const form = document.getElementById("signin_form"),
+//   email = document.getElementById("email_form"),
+//   password = document.getElementById("password_form");
+//
+//
+//
+//
+//   form.addEventListener("submit", function (e) {
+//     e.preventDefault();
+//
+//     // all input value variable
+//     const emailValue = email.value.trim(), //email
+//       passwordValue = password.value.trim(); //password
+//
+//
+//     // errorCheck for check has any error   true == nai, false == ase
+//     var errorCheck;
+//     errorCheck = false;
+//
+//     // email
+//     if (emailValue === "") {
+//       errorAction(email, "please give your email");
+//       errorCheck = true; // if has any error errorCheck convert true to false  (false == ase)
+//     } else {
+//       successAction(email);
+//     }
+//
+//     // password
+//     if (passwordValue === "") {
+//       //empty
+//       errorAction(password, "please give your password");
+//       errorCheck = true;
+//     } else {
+//       successAction(password);
+//     }
+//
+//     // check has any error     redirect insert.php page
+//     // if (errorCheck === false) {
+//     //   // check already exists
+//     //   let xhr = new XMLHttpRequest();
+//     //   xhr.open("POST", "include/reg_email.php", true);
+//     //   xhr.onload = () => {
+//     //     if (xhr.readyState === XMLHttpRequest.DONE) {
+//     //       if (xhr.status === 200) {
+//     //         let data = xhr.response;
+//     //         if (data === "success") {
+//     //           successAction(email);
+//     //
+//     //
+//     //           let xhr = new XMLHttpRequest();
+//     //           xhr.open("POST", "include/signup.php", true);
+//     //           xhr.onload = () => {
+//     //             if (xhr.readyState === XMLHttpRequest.DONE) {
+//     //               if (xhr.status === 200) {
+//     //                 let data = xhr.response;
+//     //                 if (data === "success") {
+//     //                   location.href="front.php";
+//     //                   // console.log(errorCheck);
+//     //                 }
+//     //               }
+//     //             }
+//     //           }
+//     //           let formData = new FormData(formTag);
+//     //           xhr.send(formData);
+//     //
+//     //         } else {
+//     //           errorAction(email, data);
+//     //           errorCheck = true;
+//     //         }
+//     //       }
+//     //     }
+//     //   };
+//     //   let formData = new FormData(formTag);
+//     //   xhr.send(formData);
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     // }
+//
+//   });

@@ -20,7 +20,7 @@ $rand = rand(100, 1000); //random number
 $new_img_name = $time . $rand . "." . $img_ext;  //new img name
 
 $encrypt_password = md5($password); // password encrypt
-// move_uploaded_file($tmp_name, "img/" . $new_img_name); //move image file  on img folder
+move_uploaded_file($tmp_name, "../img/" . $new_img_name); //move image file  on img folder
 
 $insert_query = "INSERT INTO users (name, email, password, img) VALUES ('$username', '$email', '$encrypt_password', '$new_img_name')"; // query_query
 $insert_db = mysqli_query(db(), $insert_query); // insert db
