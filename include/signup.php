@@ -1,4 +1,6 @@
 <?php
+
+
 session_start();
 include_once('function.php');
 
@@ -9,7 +11,6 @@ $password = $_POST['password']; //password
 $img = $_FILES['img']; //img
 
 $img_name = $img['name'];  // img name
-$img_type = $img['type'];
 $tmp_name = $img['tmp_name'];  //tempory location
 
 // img_name explode for get img extention
@@ -26,10 +27,9 @@ $insert_query = "INSERT INTO users (name, email, password, img) VALUES ('$userna
 $insert_db = mysqli_query(db(), $insert_query); // insert db
 if ($insert_db == true) {
 
-$select_query = "SELECT * FROM users WHERE email = '$email'";  // select query for get all data in session
-$get_auth = mysqli_query(db(), $select_query);
-$get_query_assoc = mysqli_fetch_assoc($get_auth);
-$_SESSION['auth'] = $get_query_assoc;
-
-echo 'success';
+   $select_query = "SELECT * FROM users WHERE email = '$email'";  // select query for get all data in session
+   $get_auth = mysqli_query(db(), $select_query);
+   $get_query_assoc = mysqli_fetch_assoc($get_auth);
+   $_SESSION['auth'] = $get_query_assoc;
+   echo 'success';
 }

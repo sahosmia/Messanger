@@ -14,9 +14,5 @@
    <script src="https://kit.fontawesome.com/fe824c63c8.js" crossorigin="anonymous"></script>
 
    <!-- main css  -->
-   <link rel="stylesheet" href="css/style1.css">
+   <link rel="stylesheet" href="css/style.css">
 </head>
-
-<body>
-   <!-- box start  -->
-   <div class="box">
