@@ -24,15 +24,14 @@ form.addEventListener("submit", function (e) {
 
   // username
   if (usernameValue === "") {
-    errorAction(username, "please give your name");
+    errorAction(username, "Please give your name.");
     errorCheck = true; // if has any error errorCheck convert true to false  (false == ase)
   } else {
     successAction(username);
   }
 
   // email
-  var validRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; // email validetion regx
+  var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; // email validetion regx
 
   if (emailValue === "") {
     errorAction(email, "please give your email");

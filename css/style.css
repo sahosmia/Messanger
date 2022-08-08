@@ -142,7 +142,7 @@ body::after {
 
 :is(.chat, .front) .header {
   background: #e4813d;
-  padding: 20px 20px 18px 20px;
+  padding: 9px 12px 6px 12px;
 }
 :is(.chat, .front) .header .front_name {
   display: flex;

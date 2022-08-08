@@ -10,7 +10,6 @@ $count_user = mysqli_num_rows($user_data_db); // count user without auth
 $user_data = mysqli_fetch_assoc($user_data_db);
 while ($data = mysqli_fetch_assoc($user_data_db)) {
 
-   // print_r($data);
    $data_id = $data['id'];
    $sql2 = "SELECT * FROM inboxs WHERE (incoming = $data_id
                 OR outgoing = $data_id) AND (outgoing = $auth_id 
