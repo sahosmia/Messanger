@@ -1,6 +1,6 @@
 # Messanger
 
-### Tencology
+### Tecnology
 - Javascript
 - Php
 - MySql Database
